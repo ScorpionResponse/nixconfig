@@ -19,12 +19,12 @@ in
       vimrcConfig.packages.myVimPackages = {
         start = my_vimPlugins;
       };
-      # vimrcConfig.customRC = builtins.readFile ~/.config/dotfiles/dotfiles/vimrc;
+      vimrcConfig.customRC = builtins.readFile ~/.config/dotfiles/dotfiles/vimrc;
     })
   ];
 
-  home.file = {
-    ".vimrc".source = ~/.config/dotfiles/dotfiles/vimrc;
-  };
+  # home.file = {
+  #   ".vimrc".source = ~/.config/dotfiles/dotfiles/vimrc;
+  # };
 }
 

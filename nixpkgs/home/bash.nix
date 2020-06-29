@@ -9,6 +9,7 @@
     shellAliases = {
       vi = "vim";
     };
+    bashrcExtra = builtins.readFile ~/.config/dotfiles/dotfiles/bashrc;
   };
 }
 
