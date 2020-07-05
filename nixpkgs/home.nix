@@ -24,8 +24,9 @@ with lib;
   # changes in each release.
   home.stateVersion = "20.03";
 
-  home.packages = [
-    pkgs.unzip
+  home.packages = with pkgs; [
+    nixfmt
+    unzip
   ];
 
   home.file = {
