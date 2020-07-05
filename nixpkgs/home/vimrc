@@ -3,10 +3,9 @@
 " 
 " Website: http://scorpionresponse.com/
 "
-" Version: 1.2 - 2020
+" Version: 1.3 - 2020
 "
 " Sections:
-"    -> vim-plug
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -16,6 +15,7 @@
 "    -> Status line
 "    -> Editing mappings
 "    -> Spell checking
+"    -> Language specific
 "    -> Misc
 "    -> Helper functions
 "
@@ -271,6 +271,72 @@ set spelllang=en_us
 map <leader>ss :setlocal spell!<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Language Specific
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Recognize jbuilder files as ruby
+autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
+
+" Bash basics
+autocmd FileType bash set ts=4 sts=4 sw=4 et
+
+" Elixir settings
+let g:syntastic_elixir_checkers = ['elixir']
+let g:syntastic_enable_elixir_checker = 1
+
+" Go settings
+let g:godef_split = 0
+let g:go_fmt_fail_silently = 1
+let g:go_list_type = 'quickfix'
+let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter', 'gofmt']
+let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+
+" HTML settings
+autocmd FileType html set tw=0 wm=0
+autocmd FileType htmldjango set tw=0 wm=0
+
+" Javascript settings
+" Prettier?
+" let g:ale_javascript_eslint_executable = '/home/vagrant/bin/js-linter'
+" let g:prettier#exec_cmd_path = "/home/vagrant/bin/js-prettier"
+" autocmd FileType javascript autocmd BufWrite <buffer> Prettier
+
+" JSON settings
+" let g:prettier#exec_cmd_path = "/home/vagrant/bin/json-prettier"
+" autocmd FileType json autocmd BufWrite <buffer> Prettier
+
+" Nix settings
+autocmd FileType nix set ts=2 sts=2 sw=2 et
+
+" Python settings
+" Turn off rope
+let g:pymode_rope = 0
+
+" Path to pydiction dictionary
+let g:pydiction_location = "$HOME/.vim/bundle/pydiction/complete-dict"
+
+" Ruby settings
+autocmd FileType ruby set ts=2 sts=2 sw=2 et
+
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_ruby_rubocop_args = "-c $HOME/bsa/v4/core/config/rubocop.yml"
+" Ruby prettier
+" let g:prettier#exec_cmd_path = "/home/vagrant/bin/rb-prettier"
+" autocmd BufWrite <buffer> Prettier
+" setlocal formatprg=$HOME/bin/rb-prettier
+
+" SCSS settings
+autocmd FileType scss set ts=2 sts=2 sw=2 et
+" let g:prettier#exec_cmd_path = "/home/vagrant/bin/scss-prettier"
+" autocmd BufWrite <buffer> Prettier
+
+" sh basics
+autocmd FileType sh set ts=4 sts=4 sw=4 et
+
+" yaml settings
+autocmd FileType yaml set ts=2 sts=2 sw=2 et
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
@@ -284,6 +350,9 @@ map <leader>pp :setlocal paste!<cr>
 
 " Use formatprg when available
 "let g:neoformat_try_formatprg = 1
+
+" Delete trailing whitespace
+autocmd BufWrite <buffer> :call DeleteTrailingWS()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
