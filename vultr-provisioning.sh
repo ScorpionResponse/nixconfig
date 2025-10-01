@@ -63,4 +63,4 @@ sync
 umount /dev/disk/by-label/boot
 umount /dev/disk/by-label/nixos
 
-echo "Done. Now reboot via \"Remove ISO\" on the Vultr web UI."
+echo "Done. Now reboot via Settings > Custom ISO > Remove ISO on the Vultr web UI."
