@@ -14,15 +14,15 @@ parted /dev/vda -- mkpart primary linux-swap -2GB 100%
 mkfs.ext4 -L nixos /dev/vda1
 mkswap -L swap /dev/vda2
 
-# create filesystem and mount
-mount /dev/disk/by-label/nixos /mnt
-
 # enable swap
 swapon /dev/vda2
 free -h
 
 # pause (just so I can see the output above)
 sleep 5
+
+# create filesystem and mount
+mount /dev/disk/by-label/nixos /mnt
 
 # generate NixOS config
 nixos-generate-config --root /mnt
@@ -60,7 +60,6 @@ nixos-install --no-root-passwd
 
 # unmount
 sync
-umount /dev/disk/by-label/boot
 umount /dev/disk/by-label/nixos
 
 echo "Done. Now reboot via Settings > Custom ISO > Remove ISO on the Vultr web UI."
